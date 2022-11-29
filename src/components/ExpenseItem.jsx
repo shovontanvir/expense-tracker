@@ -25,10 +25,10 @@ const ExpenseItem = (props) => {
       </div>
 
       <button
-        className="bg-red-300 text-green-800 font-semibold py-2 px-5 sm:ml-auto rounded-md"
+        className="bg-red-300 text-green-800 font-semibold py-2 px-5 sm:ml-5 rounded-md"
         onClick={() => handler()}
       >
-        Change Title
+        Delete
       </button>
     </div>
   );

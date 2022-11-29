@@ -1,10 +1,10 @@
 import React from "react";
 import ExpenseForm from "./ExpenseForm";
 
-const NewExpense = () => {
+const NewExpense = (props) => {
   return (
     <div className="flex justify-center my-8">
-      <ExpenseForm />
+      <ExpenseForm onAddExpense={props.onSubmit} />
     </div>
   );
 };

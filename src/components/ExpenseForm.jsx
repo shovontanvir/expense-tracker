@@ -13,7 +13,7 @@ const ExpenseForm = (props) => {
     const enteredExpenseDate = new Date();
 
     const expenseObject = {
-      date: enteredExpenseDate.toISOString().split('T')[0],
+      date: enteredExpenseDate.toISOString().split("T")[0],
       name: enteredExpenseName,
       amount: +enteredExpenseAmount,
     };
@@ -22,37 +22,48 @@ const ExpenseForm = (props) => {
     expenseNameInputRef.current.value = null;
     expenseAmountInputRef.current.value = null;
     props.onAddExpense(expenseObject);
-    // console.log(expenseObject);
   };
 
   return (
-    <form className="flex flex-col md:flex-row justify-between items-center w-3/4 p-5 bg-orange-200 rounded-lg" 
-    onSubmit={submitHandler}>
-      <div className="my-2 md:my-0 md:mx-4 w-full">
-        <input
-          type="text"
-          placeholder="Expense Title"
-          className="px-5 py-2 rounded-lg border border-orange-500 w-full"
-          ref={expenseNameInputRef}
-        />
-      </div>
-      <div className="my-2 md:my-0 md:mx-4 w-full">
-        <input
-          type="number"
-          placeholder="Expense Amount"
-          className="px-5 py-2 rounded-lg border border-orange-500 w-full"
-          ref={expenseAmountInputRef}
-        />
-      </div>
-      <div className="my-2 md:my-0 md:mx-4">
+    <div className="flex flex-col lg:flex-row justify-center items-center w-full">
+      <form
+        className="flex flex-col lg:flex-row justify-between items-center w-full lg:w-3/4"
+        onSubmit={submitHandler}
+      >
+        <div className="my-2 lg:my-0 lg:mx-4 w-full">
+          <input
+            type="text"
+            placeholder="Expense Title"
+            className="px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono"
+            ref={expenseNameInputRef}
+          />
+        </div>
+        <div className="my-2 lg:my-0 lg:mx-4 w-full">
+          <input
+            type="number"
+            placeholder="Expense Amount"
+            className="px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono"
+            ref={expenseAmountInputRef}
+          />
+        </div>
+        <div className="my-2 lg:my-0 lg:mx-4 w-full">
+          <button
+            className="border border-orange-500 text-orange-500 px-5 py-2 rounded-lg font-mono w-full"
+            type="submit"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+      <div className="my-2 lg:my-0 lg:mx-4 w-full lg:w-1/4">
         <button
-          className="border border-orange-500 text-orange-500 px-5 py-2 rounded-lg"
-          type="submit"
+          className="border border-red-500 text-red-500 px-5 py-2 rounded-lg font-mono w-full"
+          onClick={props.onclick}
         >
-          Add
+          Cancel
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 

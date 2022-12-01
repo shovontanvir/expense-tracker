@@ -1,6 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const ExpenseForm = (props) => {
+  const [isValid, setIsValid] = useState(true);
+  const [placeClass, setPlaceClass] = useState("placeholder:text-gray-400");
+  const [showAlert, setShowAlert] = useState("hidden");
   const expenseNameInputRef = useRef();
   const expenseAmountInputRef = useRef();
 
@@ -24,6 +27,11 @@ const ExpenseForm = (props) => {
 
     // if n=input fields are empty do nothing
     if(enteredExpenseName.trim().length === 0 || enteredExpenseAmount.trim().length === 0) {
+      setIsValid(false);
+      setPlaceClass("placeholder:text-red-500 placeholder:font-bold");
+      setShowAlert("block");
+      // placeClass = {!isValid ? "placeholder:text-red-900" : }
+      console.log(isValid);
       return;
     }
 
@@ -32,6 +40,8 @@ const ExpenseForm = (props) => {
   };
 
   return (
+    <>
+    <h1 className={` px-5 mb-3 text-red-500 font-bold font-mono ${showAlert}`}>**Please give a valid input inside the fields.</h1>
     <div className="flex flex-col lg:flex-row justify-center items-center w-full">
       <form
         className="flex flex-col lg:flex-row justify-between items-center w-full lg:w-3/4"
@@ -41,7 +51,7 @@ const ExpenseForm = (props) => {
           <input
             type="text"
             placeholder="Expense Title"
-            className="px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono"
+            className={`px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono ${placeClass}`}
             ref={expenseNameInputRef}
           />
         </div>
@@ -49,7 +59,7 @@ const ExpenseForm = (props) => {
           <input
             type="number"
             placeholder="Expense Amount"
-            className="px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono"
+            className={`px-5 py-2 rounded-lg border border-orange-500 w-full placeholder:font-mono ${placeClass}`}
             ref={expenseAmountInputRef}
           />
         </div>
@@ -71,6 +81,7 @@ const ExpenseForm = (props) => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

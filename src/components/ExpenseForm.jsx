@@ -21,6 +21,13 @@ const ExpenseForm = (props) => {
     // setting input values, two way binding(listening and updating)
     expenseNameInputRef.current.value = null;
     expenseAmountInputRef.current.value = null;
+
+    // if n=input fields are empty do nothing
+    if(enteredExpenseName.trim().length === 0 || enteredExpenseAmount.trim().length === 0) {
+      return;
+    }
+
+    // pass the expense object to parent component
     props.onAddExpense(expenseObject);
   };
 
